@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "dagster-project"
+version = "0.1.0"
+description = "Dagster pipelines for TIKI Ocean core data infrastructure"
+authors = ["Tim O'Guin <tim@mytiki.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+dagster = "^1.5.14"
+dagster-cloud = "^1.5.14"
+dagster-dbt = "^0.21.14"
+dagster-aws = "^0.21.14"
+dagster-duckdb-polars = "^0.21.14"
+dagster-ge = "^0.21.14"
+dagster-github = "^0.21.14"
+dbt-duckdb = "^1.7.0"
+dbt-athena-community = "^1.7.1"
+
+[tool.poetry.group.dev.dependencies]
+dagster-webserver = "^1.5.14"
+ruff = "^0.1.11"
+tox = "^4.11.4"
+pytest = "^7.4.4"
+
+[tool.dagster]
+module_name = "core.definitions"
+code_location_name = "core"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
