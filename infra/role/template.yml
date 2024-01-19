@@ -91,4 +91,4 @@ Resources:
           - Effect: Allow
             Action:
               - servicediscovery:GetNamespace
-            Resource: !Sub arn:aws:servicediscovery:${AWS::Region}:${AWS::AccountId:namespace/*
+            Resource: !Sub arn:aws:servicediscovery:${AWS::Region}:${AWS::AccountId}:namespace/*
