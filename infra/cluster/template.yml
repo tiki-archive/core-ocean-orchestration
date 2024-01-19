@@ -22,7 +22,7 @@ Resources:
       Parameters:
         DagsterOrganization: mytiki
         DagsterDeployment: prod
-        EnableBranchDeployments: false
+        EnableBranchDeployments: true
         AgentToken: !Ref AgentToken
         ExistingVPC: !Ref Vpc
         ExistingSubnets: !Ref Subnets
