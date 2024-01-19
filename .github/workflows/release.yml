@@ -24,7 +24,7 @@ jobs:
 
       - name: SetVars
         run: |
-          sed -i 's/${AWS::AccountId}/${{ secrets.AWS_ACCOUNT_ID }}/' role/template.yml
+          sed -i 's/${AWS::AccountId}/${{ secrets.AWS_ACCOUNT_ID }}/' infra/role/template.yml
 
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -35,7 +35,7 @@ jobs:
 
       - name: SAM Deploy Role
         run: |
-          cd role
+          cd infra/role
           sam build
           sam package
           sam deploy
@@ -43,7 +43,7 @@ jobs:
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubDeployCoreOceanCatalog
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubDeployCoreOceanOrchestration
           role-session-name: ${{ vars.SESSION_NAME }}
           aws-region: ${{ vars.AWS_REGION }}
 
