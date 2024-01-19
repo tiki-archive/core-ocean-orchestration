@@ -38,7 +38,7 @@ Resources:
             Action:
               - s3:PutObject
               - s3:GetObject
-            Resource: !Sub arn:aws:s3:::mytiki-core-ocean-cf-deploy/*
+            Resource: arn:aws:s3:::mytiki-core-ocean-cf-deploy/*
           - Effect: Allow
             Action: cloudformation:*
             Resource:
@@ -71,8 +71,8 @@ Resources:
               - iam:DetachRolePolicy
               - iam:PassRole
             Resource:
-              - !Sub arn:aws:iam::{AWS::AccountId}:role/core-ocean-orchestration-cluster--TaskExecutionRole-*
-              - !Sub arn:aws:iam::{AWS::AccountId}:role/core-ocean-orchestration-cluster-Dagster--AgentRole-*
+              - !Sub arn:aws:iam::${AWS::AccountId}:role/core-ocean-orchestration-cluster--TaskExecutionRole-*
+              - !Sub arn:aws:iam::${AWS::AccountId}:role/core-ocean-orchestration-cluster-Dagster--AgentRole-*
           - Effect: Allow
             Action:
               - logs:CreateLogGroup
