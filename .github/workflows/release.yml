@@ -64,6 +64,10 @@ jobs:
       DEPLOYMENT_ENV: ${{ vars.DEPLOYMENT_ENV }}
 
     steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
       - name: Pre-run checks
         id: prerun
         uses: dagster-io/dagster-cloud-action/actions/utils/prerun@v0.1
@@ -84,6 +88,7 @@ jobs:
         uses: dagster-io/dagster-cloud-action/actions/utils/dagster-cloud-cli@v0.1
         with:
           command: "ci check --project-dir ${{ env.DAGSTER_PROJECT_DIR }} --dagster-cloud-yaml-path ${{ env.DAGSTER_CLOUD_YAML_PATH }}"
+
 
       - name: Initialize build session
         id: ci-init
