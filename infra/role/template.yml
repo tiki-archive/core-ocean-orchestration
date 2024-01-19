@@ -57,6 +57,7 @@ Resources:
               - servicediscovery:TagResource
               - servicediscovery:GetOperation
               - ecr:GetAuthorizationToken
+              - ecs:DeregisterTaskDefinition
             Resource: "*"
           - Effect: Allow
             Action:
