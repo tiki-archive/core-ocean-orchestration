@@ -64,10 +64,6 @@ jobs:
       DEPLOYMENT_ENV: ${{ vars.DEPLOYMENT_ENV }}
 
     steps:
-      - name: SetVars
-        run: |
-          sed -i 's|${vars.IMAGE_REGISTRY}|${{ vars.IMAGE_REGISTRY }}|' dagster_cloud.yaml
-
       - name: Pre-run checks
         id: prerun
         uses: dagster-io/dagster-cloud-action/actions/utils/prerun@v0.1
@@ -77,6 +73,10 @@ jobs:
         if: steps.prerun.outputs.result != 'skip'
         with:
           ref: ${{ github.head_ref }}
+
+      - name: SetVars
+        run: |
+          sed -i 's|${vars.IMAGE_REGISTRY}|${{ vars.IMAGE_REGISTRY }}|' dagster_cloud.yaml
 
       - name: Validate configuration
         id: ci-validate
