@@ -102,4 +102,4 @@ Resources:
               - ecr:DescribeRepositories
               - ecr:SetRepositoryPolicy
               - ecr:BatchGetImage
-            Resource: !Sub arn:aws:ecr:${AWS::Region}:${AWS::AccountId}:repository/dbt_pipelines
+            Resource: !Sub arn:aws:ecr:${AWS::Region}:${AWS::AccountId}:repository/core-ocean
