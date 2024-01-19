@@ -52,7 +52,7 @@ jobs:
 
   Dagster:
     runs-on: ubuntu-latest
-    depends-on: Infra
+    needs: Infra
     environment: Production
     env:
       DAGSTER_CLOUD_ORGANIZATION: ${{ vars.DAGSTER_CLOUD_ORGANIZATION }}
