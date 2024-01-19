@@ -56,6 +56,7 @@ Resources:
               - servicediscovery:CreatePrivateDnsNamespace
               - servicediscovery:TagResource
               - servicediscovery:GetOperation
+              - ecr:GetAuthorizationToken
             Resource: "*"
           - Effect: Allow
             Action:
@@ -91,3 +92,14 @@ Resources:
             Action:
               - servicediscovery:GetNamespace
             Resource: !Sub arn:aws:servicediscovery:${AWS::Region}:${AWS::AccountId}:namespace/*
+          - Effect: Allow
+            Action:
+              - ecr:InitiateLayerUpload
+              - ecr:CompleteLayerUpload
+              - ecr:UploadLayerPart
+              - ecr:PutImage
+              - ecr:BatchCheckLayerAvailability
+              - ecr:DescribeRepositories
+              - ecr:SetRepositoryPolicy
+              - ecr:BatchGetImage
+            Resource: !Sub arn:aws:ecr:${AWS::Region}:${AWS::AccountId}:repository/dbt_pipelines
