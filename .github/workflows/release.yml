@@ -45,6 +45,7 @@ jobs:
 
       - name: SAM Deploy Cluster
         run: |
+          cd infra/cluster
           sam build --parameter-overrides ParameterKey=AgentToken,ParameterValue=${{ secrets.AGENT_TOKEN }} ParameterKey=Vpc,ParameterValue=${{ secrets.VPC_ID }} ParameterKey=Subnets,ParameterValue=${{ secrets.SUBNET_IDS }}
           sam package
           sam deploy --parameter-overrides ParameterKey=AgentToken,ParameterValue=${{ secrets.AGENT_TOKEN }} ParameterKey=Vpc,ParameterValue=${{ secrets.VPC_ID }} ParameterKey=Subnets,ParameterValue=${{ secrets.SUBNET_IDS }}
