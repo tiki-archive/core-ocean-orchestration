@@ -85,6 +85,7 @@ Resources:
               - ecs:DescribeClusters
               - ecs:CreateService
               - ecs:DescribeServices
+              - ecs:UpdateService
             Resource:
               - !Sub arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:cluster/Dagster-Cloud-mytiki-*
               - !Sub arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:service/Dagster-Cloud-mytiki-*
