@@ -45,5 +45,50 @@ Resources:
               - !Sub arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/core-ocean-orchestration-cluster/*
               - !Sub arn:aws:cloudformation:${AWS::Region}:aws:transform/Serverless-2016-10-31
           - Effect: Allow
-            Action: cloudformation:ListStacks
+            Action:
+              - ec2:DescribeVpcs
+              - ec2:DescribeSubnets
+              - cloudformation:ListStacks
+              - ecs:CreateCluster
+              - ecs:RegisterTaskDefinition
+              - ecs:CreateService
+              - route53:CreateHostedZone
+              - servicediscovery:CreatePrivateDnsNamespace
+              - servicediscovery:TagResource
+              - servicediscovery:GetOperation
+              - ecs:RegisterTaskDefinition
             Resource: "*"
+          - Effect: Allow
+            Action:
+              - iam:CreateRole
+              - iam:GetRole
+              - iam:UpdateRole
+              - iam:DeleteRole
+              - iam:TagRole
+              - iam:GetRolePolicy
+              - iam:PutRolePolicy
+              - iam:DeleteRolePolicy
+              - iam:AttachRolePolicy
+              - iam:DetachRolePolicy
+              - iam:PassRole
+            Resource:
+              - !Sub arn:aws:iam::{AWS::AccountId}:role/core-ocean-orchestration-cluster--TaskExecutionRole-*
+              - !Sub arn:aws:iam::{AWS::AccountId}:role/core-ocean-orchestration-cluster-Dagster--AgentRole-*
+          - Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:TagResource
+              - logs:PutRetentionPolicy
+            Resource: !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:core-ocean-orchestration-cluster-Dagster-*
+          - Effect: Allow
+            Action:
+              - ecs:DescribeClusters
+              - ecs:CreateService
+              - ecs:DescribeServices
+            Resource:
+              - !Sub arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:cluster/Dagster-Cloud-mytiki-*
+              - !Sub arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:service/Dagster-Cloud-mytiki-*
+          - Effect: Allow
+            Action:
+              - servicediscovery:GetNamespace
+            Resource: !Sub arn:aws:servicediscovery:${AWS::Region}:${AWS::AccountId:namespace/*
