@@ -66,7 +66,7 @@ jobs:
     steps:
       - name: SetVars
         run: |
-          sed -i 's/${{ vars.IMAGE_REGISTRY }}/${{ vars.IMAGE_REGISTRY }}/' dagster_cloud.yaml
+          sed -i 's/${vars.IMAGE_REGISTRY}/${{ vars.IMAGE_REGISTRY }}/' dagster_cloud.yaml
 
       - name: Pre-run checks
         id: prerun

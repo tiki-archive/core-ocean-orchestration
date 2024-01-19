@@ -4,4 +4,4 @@ locations:
       package_name: dbt_pipelines
     build:
       directory: ./
-      registry: ${{ vars.IMAGE_REGISTRY }}
+      registry: ${vars.IMAGE_REGISTRY}
