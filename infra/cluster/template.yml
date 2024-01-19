@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Core Ocean Orchestration Cluster
+
+Parameters:
+  AgentToken:
+    Description: The Dagster Cloud secret agent token
+    Type: String
+    NoEcho: true
+  Vpc:
+    Description: The Id of the VPC to launch the cluster within
+    Type: String
+  Subnets:
+    Description: The Ids of the public subnets as comma seperated values
+    Type: String
+
+Resources:
+  Dagster:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: https://s3.amazonaws.com/dagster.cloud/cloudformation/ecs-agent.yaml
+      Parameters:
+        DagsterOrganization: mytiki
+        DagsterDeployment: prod
+        EnableBranchDeployments: false
+        AgentToken: !Ref AgentToken
+        ExistingVPC: !Ref Vpc
+        ExistingSubnets: !Ref Subnets
+        ExistingCluster: ""
+        TaskLaunchType: FARGATE
+        EnableZeroDowntimeDeploys: false
+        NumReplicas: 1

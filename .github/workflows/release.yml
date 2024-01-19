@@ -22,10 +22,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: SetVars
-        run: |
-          sed -i 's/${AWS::AccountId}/${{ secrets.AWS_ACCOUNT_ID }}/' infra/role/template.yml
-
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -47,11 +43,11 @@ jobs:
           role-session-name: ${{ vars.SESSION_NAME }}
           aws-region: ${{ vars.AWS_REGION }}
 
-#      - name: SAM Deploy Catalog
-#        run: |
-#          sam build
-#          sam package
-#          sam deploy
+      - name: SAM Deploy Cluster
+        run: |
+          sam build --parameter-overrides ParameterKey=AgentToken,ParameterValue=${{ secrets.AGENT_TOKEN }} ParameterKey=Vpc,ParameterValue=${{ secrets.VPC_ID }} ParameterKey=Subnets,ParameterValue=${{ secrets.SUBNET_IDS }}
+          sam package
+          sam deploy --parameter-overrides ParameterKey=AgentToken,ParameterValue=${{ secrets.AGENT_TOKEN }} ParameterKey=Vpc,ParameterValue=${{ secrets.VPC_ID }} ParameterKey=Subnets,ParameterValue=${{ secrets.SUBNET_IDS }}
 #
 #      - name: Get Version
 #        id: semver
