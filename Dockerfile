@@ -13,5 +13,5 @@ COPY pyproject.toml poetry.lock ./
 RUN touch README.md
 RUN poetry install --without dev --no-root && rm -rf $POETRY_CACHE_DIR
 
-COPY dbt_pipelines ./
+COPY dbt_pipelines ./dbt_pipelines
 RUN poetry install --without dev

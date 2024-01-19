@@ -137,7 +137,7 @@ jobs:
         if: steps.prerun.outputs.result != 'skip'
         uses: dagster-io/dagster-cloud-action/actions/utils/dagster-cloud-cli@v0.1
         with:
-          command: "ci set-build-output --location-name=dbt_pipelines.definitions --image-tag=$IMAGE_TAG-dbt_pipelines"
+          command: "ci set-build-output --location-name=dbt_pipelines --image-tag=$IMAGE_TAG-dbt_pipelines"
 
       - name: Deploy to Dagster Cloud
         id: ci-deploy
