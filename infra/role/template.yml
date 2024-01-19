@@ -56,7 +56,6 @@ Resources:
               - servicediscovery:CreatePrivateDnsNamespace
               - servicediscovery:TagResource
               - servicediscovery:GetOperation
-              - ecs:RegisterTaskDefinition
             Resource: "*"
           - Effect: Allow
             Action:
