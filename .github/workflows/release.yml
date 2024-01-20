@@ -95,9 +95,9 @@ jobs:
       - name: Add Pipelines
         run: |
           mkdir orchestration/dbt_pipelines/pipelines
-          cp pipelines/macros orchestration/dbt_pipelines/pipelines/
-          cp pipelines/models orchestration/dbt_pipelines/pipelines/
-          cp pipelines/seeds orchestration/dbt_pipelines/pipelines/
+          cp -r pipelines/macros orchestration/dbt_pipelines/pipelines/
+          cp -r pipelines/models orchestration/dbt_pipelines/pipelines/
+          cp -r pipelines/seeds orchestration/dbt_pipelines/pipelines/
           cp pipelines/dbt_project.yml orchestration/dbt_pipelines/pipelines/
           cp pipelines/dependencies.yml orchestration/dbt_pipelines/pipelines/
           cp pipelines/package-lock.yml orchestration/dbt_pipelines/pipelines/
