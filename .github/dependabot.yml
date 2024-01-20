@@ -24,3 +24,16 @@ updates:
       all:
         patterns:
           - "*"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "docker"
+    labels:
+      - "chore"
+    groups:
+      all:
+        patterns:
+          - "*"

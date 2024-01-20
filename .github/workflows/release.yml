@@ -81,6 +81,16 @@ jobs:
         if: steps.prerun.outputs.result != 'skip'
         with:
           ref: ${{ github.head_ref }}
+          path: orchestration
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        if: steps.prerun.outputs.result != 'skip'
+        with:
+          repository: tiki/core-ocean-pipelines
+          token: ${{ secrets.GH_PROJECT_PAT }}
+          path: pipelines
+          ref: main
 
       - name: SetVars
         run: |
@@ -92,7 +102,6 @@ jobs:
         uses: dagster-io/dagster-cloud-action/actions/utils/dagster-cloud-cli@v0.1
         with:
           command: "ci check --project-dir ${{ env.DAGSTER_PROJECT_DIR }} --dagster-cloud-yaml-path ${{ env.DAGSTER_CLOUD_YAML_PATH }}"
-
 
       - name: Initialize build session
         id: ci-init
@@ -126,7 +135,7 @@ jobs:
         if: steps.prerun.outputs.result != 'skip'
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: orchestration
           push: true
           tags: ${{ env.IMAGE_REGISTRY }}:${{ env.IMAGE_TAG }}-dbt_pipelines
           cache-from: type=gha

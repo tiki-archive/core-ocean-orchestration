@@ -14,4 +14,5 @@ RUN touch README.md
 RUN poetry install --without dev --no-root && rm -rf $POETRY_CACHE_DIR
 
 COPY dbt_pipelines ./dbt_pipelines
+COPY ../pipelines ./dbt_pipelines/pipelines
 RUN poetry install --without dev

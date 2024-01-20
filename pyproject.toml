@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "dagster-project"
+name = "dbt_pipelines"
 version = "0.1.0"
 description = "Dagster pipelines for TIKI Ocean core data infrastructure"
 authors = ["Tim O'Guin <tim@mytiki.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.10,<3.12"
 dagster = "^1.5.14"
 dagster-cloud = "^1.5.14"
 dagster-dbt = "^0.21.14"
