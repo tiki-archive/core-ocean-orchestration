@@ -92,6 +92,19 @@ jobs:
           path: pipelines
           ref: main
 
+      - name: Add Pipelines
+        run: |
+          mkdir orchestration/dbt_pipelines/pipelines
+          cp pipelines/macros orchestration/dbt_pipelines/pipelines/
+          cp pipelines/models orchestration/dbt_pipelines/pipelines/
+          cp pipelines/seeds orchestration/dbt_pipelines/pipelines/
+          cp pipelines/dbt_project.yml orchestration/dbt_pipelines/pipelines/
+          cp pipelines/dependencies.yml orchestration/dbt_pipelines/pipelines/
+          cp pipelines/package-lock.yml orchestration/dbt_pipelines/pipelines/
+          cp pipelines/poetry.yml orchestration/dbt_pipelines/pipelines/
+          cp pipelines/profiles.yml orchestration/dbt_pipelines/pipelines/
+          cp pipelines/pyproject.toml orchestration/dbt_pipelines/pipelines/
+
       - name: SetVars
         run: |
           sed -i 's|${vars.IMAGE_REGISTRY}|${{ vars.IMAGE_REGISTRY }}|' orchestration/dagster_cloud.yaml
