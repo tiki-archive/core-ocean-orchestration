@@ -101,7 +101,7 @@ jobs:
           cp pipelines/dbt_project.yml orchestration/dbt_pipelines/pipelines/
           cp pipelines/dependencies.yml orchestration/dbt_pipelines/pipelines/
           cp pipelines/package-lock.yml orchestration/dbt_pipelines/pipelines/
-          cp pipelines/poetry.yml orchestration/dbt_pipelines/pipelines/
+          cp pipelines/poetry.lock orchestration/dbt_pipelines/pipelines/
           cp pipelines/profiles.yml orchestration/dbt_pipelines/pipelines/
           cp pipelines/pyproject.toml orchestration/dbt_pipelines/pipelines/
 
