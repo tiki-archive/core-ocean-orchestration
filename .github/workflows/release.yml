@@ -60,8 +60,8 @@ jobs:
     env:
       DAGSTER_CLOUD_ORGANIZATION: ${{ vars.DAGSTER_CLOUD_ORGANIZATION }}
       DAGSTER_CLOUD_API_TOKEN: ${{ secrets.AGENT_TOKEN }}
-      DAGSTER_PROJECT_DIR: "."
-      DAGSTER_CLOUD_YAML_PATH: "dagster_cloud.yaml"
+      DAGSTER_PROJECT_DIR: "orchestration"
+      DAGSTER_CLOUD_YAML_PATH: "orchestration/dagster_cloud.yaml"
       IMAGE_REGISTRY: ${{ vars.IMAGE_REGISTRY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       DEPLOYMENT_ENV: ${{ vars.DEPLOYMENT_ENV }}
