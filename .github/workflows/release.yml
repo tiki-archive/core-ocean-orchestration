@@ -94,7 +94,7 @@ jobs:
 
       - name: SetVars
         run: |
-          sed -i 's|${vars.IMAGE_REGISTRY}|${{ vars.IMAGE_REGISTRY }}|' dagster_cloud.yaml
+          sed -i 's|${vars.IMAGE_REGISTRY}|${{ vars.IMAGE_REGISTRY }}|' orchestration/dagster_cloud.yaml
 
       - name: Validate configuration
         id: ci-validate
