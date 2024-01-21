@@ -126,5 +126,6 @@ Resources:
             Action:
               - athena:StartQueryExecution
               - athena:GetQueryExecution
+              - athena:GetQueryResults
             Resource:
               - !Sub arn:aws:athena:${AWS::Region}:${AWS::AccountId}:workgroup/*
