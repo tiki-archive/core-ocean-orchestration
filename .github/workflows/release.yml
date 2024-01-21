@@ -92,6 +92,13 @@ jobs:
           path: pipelines
           ref: main
 
+      - name: AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubDeployCoreOceanOrchestration
+          role-session-name: ${{ vars.SESSION_NAME }}
+          aws-region: ${{ vars.AWS_REGION }}
+
       - name: Add Pipelines
         run: |
           mkdir orchestration/dbt_pipelines/pipelines
