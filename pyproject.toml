@@ -24,8 +24,9 @@ tox = "^4.11.4"
 pytest = "^7.4.4"
 
 [tool.dagster]
-module_name = "dbt_pipelines.definitions"
-code_location_name = "dbt_pipelines"
+#module_name = "dbt_pipelines.definitions"
+#code_location_name = "dbt_pipelines"
+module_name = "my_dagster_project"
 
 [build-system]
 requires = ["poetry-core"]
