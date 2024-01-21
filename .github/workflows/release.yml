@@ -104,6 +104,7 @@ jobs:
           mkdir src
           cp -r pipelines/* src
           cp -r orchestration src
+          mv src/orchestration/Dockerfile src/Dockerfile
 
       - name: SetVars
         run: |
