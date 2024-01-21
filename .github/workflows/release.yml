@@ -76,14 +76,14 @@ jobs:
         id: prerun
         uses: dagster-io/dagster-cloud-action/actions/utils/prerun@v0.1
 
-      - name: Checkout
+      - name: Checkout Orchestration
         uses: actions/checkout@v3
         if: steps.prerun.outputs.result != 'skip'
         with:
           ref: ${{ github.head_ref }}
           path: orchestration
 
-      - name: Checkout
+      - name: Checkout Pipelines
         uses: actions/checkout@v3
         if: steps.prerun.outputs.result != 'skip'
         with:
@@ -98,7 +98,7 @@ jobs:
           cd pipelines
           python3 -m pip install dbt-athena-community
           dbt deps
-          dbt compile
+          dbt compile --target prod
           cp -r target ../orchestration/dbt_pipelines/pipelines
 
       - name: SetVars
