@@ -109,6 +109,11 @@ Resources:
             Action:
               - glue:GetTable
             Resource:
-                - !Sub arn:aws:glue:*:${AWS::AccountId}:catalog
+                - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:catalog
                 - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:database/*
                 - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:table/*/*
+          - Effect: Allow
+            Action:
+              - athena:StartQueryExecution
+            Resource:
+              - !Sub arn:aws:athena:${AWS::Region}:${AWS::AccountId}:workgroup/*
