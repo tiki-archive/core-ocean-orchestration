@@ -122,6 +122,7 @@ Resources:
               - glue:GetTable
               - glue:GetDatabases
               - glue:CreateDatabase
+              - glue:DeleteTable
             Resource:
                 - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:catalog
                 - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:database/*
