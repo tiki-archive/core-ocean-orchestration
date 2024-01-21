@@ -6,7 +6,7 @@ from pathlib import Path
 
 from dagster_dbt import DbtCliResource
 
-dbt_project_dir = Path(__file__).joinpath("pipelines").resolve()
+dbt_project_dir = Path(__file__).joinpath("compiled").resolve()
 
 print("DOES THIS PRINT TO CONSOLE??")
 print(dbt_project_dir)

@@ -106,7 +106,7 @@ jobs:
           python3 -m pip install dbt-athena-community
           dbt deps
           dbt compile --target prod
-          cp -r target ../orchestration/dbt_pipelines/pipelines
+          cp -r target ../orchestration/dbt_pipelines/compiled
 
       - name: SetVars
         run: |
