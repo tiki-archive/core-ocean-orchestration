@@ -121,6 +121,7 @@ Resources:
             Action:
               - glue:GetTable
               - glue:GetDatabases
+              - glue:GetDatabase
               - glue:CreateDatabase
               - glue:DeleteTable
             Resource:
