@@ -38,7 +38,17 @@ Resources:
             Action:
               - s3:PutObject
               - s3:GetObject
-            Resource: arn:aws:s3:::mytiki-core-ocean-cf-deploy/*
+              - s3:GetBucketLocation
+              - s3:ListBucket
+              - s3:ListBucketMultipartUploads
+              - s3:ListMultipartUploadParts
+              - s3:AbortMultipartUpload
+              - s3:PutObject
+            Resource:
+              - arn:aws:s3:::mytiki-core-ocean-cf-deploy
+              - arn:aws:s3:::mytiki-core-ocean-cf-deploy/*
+              - arn:aws:s3:::mytiki-athena-query-results-us-east-2
+              - arn:aws:s3:::mytiki-athena-query-results-us-east-2/*
           - Effect: Allow
             Action: cloudformation:*
             Resource:
