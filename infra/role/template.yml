@@ -105,3 +105,10 @@ Resources:
               - ecr:SetRepositoryPolicy
               - ecr:BatchGetImage
             Resource: !Sub arn:aws:ecr:${AWS::Region}:${AWS::AccountId}:repository/core-ocean
+          - Effect: Allow
+            Action:
+              - glue:GetTable
+            Resource:
+                - !Sub arn:aws:glue:*:${AWS::AccountId}:catalog
+                - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:database/*
+                - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:table/*/*
