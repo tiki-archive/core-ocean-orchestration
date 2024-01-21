@@ -1,3 +1,6 @@
+#  Copyright (c) TIKI Inc.
+#  MIT license. See LICENSE file in root directory.
+
 from dagster import AssetExecutionContext
 from dagster_dbt import DbtCliResource, dbt_assets
 

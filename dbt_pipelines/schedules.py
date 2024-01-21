@@ -1,6 +1,10 @@
+#  Copyright (c) TIKI Inc.
+#  MIT license. See LICENSE file in root directory.
+
 """
 To add a daily schedule that materializes your dbt assets, uncomment the following lines.
 """
+
 from dagster_dbt import build_schedule_from_dbt_selection
 
 from .assets import core_dbt_assets
