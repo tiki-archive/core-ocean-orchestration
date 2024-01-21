@@ -99,15 +99,11 @@ jobs:
           role-session-name: ${{ vars.SESSION_NAME }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: Add Pipelines
+      - name: Build Src
         run: |
-          mkdir orchestration/dbt_pipelines/compiled
-          cd pipelines
-          python3 -m pip install dbt-athena-community
-          dbt deps
-          dbt compile --target prod
-          cp -r target ../orchestration/dbt_pipelines/compiled/target
-          cp dbt_project.yml ../orchestration/dbt_pipelines/compiled
+          mkdir src
+          cp -r pipelines/* src
+          cp -r orchestration src
 
       - name: SetVars
         run: |
@@ -152,7 +148,7 @@ jobs:
         if: steps.prerun.outputs.result != 'skip'
         uses: docker/build-push-action@v4
         with:
-          context: orchestration
+          context: src
           push: true
           tags: ${{ env.IMAGE_REGISTRY }}:${{ env.IMAGE_TAG }}-dbt_pipelines
           cache-from: type=gha
