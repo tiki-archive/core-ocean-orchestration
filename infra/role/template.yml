@@ -119,6 +119,7 @@ Resources:
             Action:
               - glue:GetTable
               - glue:GetDatabases
+              - glue:CreateDatabase
             Resource:
                 - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:catalog
                 - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:database/*
