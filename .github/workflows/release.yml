@@ -107,6 +107,7 @@ jobs:
           dbt deps
           dbt compile --target prod
           cp -r target ../orchestration/dbt_pipelines/compiled/target
+          cp dbt_project.yml ../orchestration/dbt_pipelines/compiled
 
       - name: SetVars
         run: |
