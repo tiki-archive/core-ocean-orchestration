@@ -126,6 +126,7 @@ Resources:
               - glue:DeleteTable
               - glue:CreateTable
               - glue:GetPartitions
+              - glue:UpdateTable
             Resource:
                 - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:catalog
                 - !Sub arn:aws:glue:${AWS::Region}:${AWS::AccountId}:database/*
@@ -141,5 +142,5 @@ Resources:
             Action:
               - s3:DeleteObject
             Resource:
-              - arn:aws:s3:::mytiki-ocean/dbt_project/*
+              - arn:aws:s3:::mytiki-ocean/ocean/dbt_project/*
               - arn:aws:s3:::mytiki-athena-query-results-us-east-2/core-data/dbt_project/*
