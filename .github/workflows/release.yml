@@ -62,6 +62,7 @@ jobs:
       DAGSTER_CLOUD_API_TOKEN: ${{ secrets.AGENT_TOKEN }}
       DAGSTER_PROJECT_DIR: "src/orchestration"
       DAGSTER_CLOUD_YAML_PATH: "dagster_cloud.yaml"
+      DAGSTER_LOCATION: "dbt_pipelines"
       IMAGE_REGISTRY: ${{ vars.IMAGE_REGISTRY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       DEPLOYMENT_ENV: ${{ vars.DEPLOYMENT_ENV }}
@@ -103,9 +104,12 @@ jobs:
         continue-on-error: true
         run: |
           mkdir src
+          cp -r pipelines/* src
           cp -r orchestration src
           cd src
-          mv orchestration/Dockerfile Dockerfile
+          python3 -m pip install dbt-athena-community
+          dbt deps
+          dbt build --target prod
 
       - name: SetVars
         run: |
@@ -146,22 +150,22 @@ jobs:
         if: steps.prerun.outputs.result != 'skip'
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build and upload Docker image for "dbt_pipelines"
+      - name: Build and upload Docker image
         if: steps.prerun.outputs.result != 'skip'
         uses: docker/build-push-action@v4
         with:
           context: src
           push: true
-          tags: ${{ env.IMAGE_REGISTRY }}:${{ env.IMAGE_TAG }}-dbt_pipelines
+          tags: ${{ env.IMAGE_REGISTRY }}:${{ env.IMAGE_TAG }}-${{ env.DAGSTER_LOCATION }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Update build session with image tag for dbt_pipelines
+      - name: Update build session with image tag
         id: ci-set-build-output-example-location
         if: steps.prerun.outputs.result != 'skip'
         uses: dagster-io/dagster-cloud-action/actions/utils/dagster-cloud-cli@v0.1
         with:
-          command: "ci set-build-output --location-name=tutorial --image-tag=$IMAGE_TAG-dbt_pipelines"
+          command: "ci set-build-output --location-name=${{ env.DAGSTER_LOCATION }} --image-tag=$IMAGE_TAG-${{ env.DAGSTER_LOCATION }}"
 
       - name: Deploy to Dagster Cloud
         id: ci-deploy

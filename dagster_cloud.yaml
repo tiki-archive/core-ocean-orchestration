@@ -1,7 +1,7 @@
 locations:
-  - location_name: tutorial
+  - location_name: dbt_pipelines
     code_source:
-      package_name: tutorial
+      package_name: dbt_pipelines
     build:
       directory: ./
       registry: ${vars.IMAGE_REGISTRY}
