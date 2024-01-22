@@ -100,6 +100,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Build Src
+        continue-on-error: true
         run: |
           mkdir src
           cp -r pipelines/* src
