@@ -108,7 +108,6 @@ jobs:
           python3 -m pip install dbt-athena-community
           dbt deps
           dbt build --target prod
-          mv orchestration/Dockerfile Dockerfile
 
       - name: SetVars
         run: |
