@@ -103,13 +103,9 @@ jobs:
         continue-on-error: true
         run: |
           mkdir src
-#          cp -r pipelines/* src
           cp -r orchestration src
           cd src
           mv orchestration/Dockerfile Dockerfile
-#          python3 -m pip install dbt-athena-community
-#          dbt deps
-#          dbt build --target prod
 
       - name: SetVars
         run: |
